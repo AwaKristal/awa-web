@@ -12,6 +12,7 @@
       --text-color: #c9d1d9;
       --text-heading: #ffffff;
       --border-color: #30363d;
+      --subtext-color: #8b949e;
     }
 
     * {
@@ -54,7 +55,7 @@
 
     header p {
       font-size: 1.1rem;
-      color: #8b949e;
+      color: var(--subtext-color);
     }
 
     .container {
@@ -81,30 +82,82 @@
     }
 
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       background-color: var(--accent-color);
       color: #0d1117;
       padding: 10px 20px;
       border-radius: 6px;
       text-decoration: none;
       font-weight: bold;
-      margin-top: 15px;
-      transition: background-color 0.2s ease;
+      margin-top: 12px;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
     }
 
     .btn:hover {
       background-color: #79c0ff;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: #21262d;
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background-color: #30363d;
+      color: #ffffff;
+    }
+
+    .btn-social {
+      width: 100%;
+      justify-content: flex-start;
+      padding: 14px 20px;
+      font-size: 1.05rem;
+    }
+
+    .social-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .author-credit {
+      font-size: 0.8rem;
+      color: var(--subtext-color);
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* Manejo de Vistas */
+    #view-main, #view-redes {
+      transition: opacity 0.3s ease;
+    }
+
+    .hidden {
+      display: none !important;
     }
 
     footer {
       text-align: center;
       margin-top: 50px;
       padding: 20px;
-      color: #8b949e;
+      color: var(--subtext-color);
       border-top: 1px solid var(--border-color);
       max-width: 800px;
       margin-left: auto;
       margin-right: auto;
+    }
+
+    svg {
+      flex-shrink: 0;
     }
   </style>
 </head>
@@ -113,27 +166,146 @@
   <header>
     <img src="https://i.postimg.cc/xd94L0Z0/Perico.jpg" alt="AwaKristal Avatar" class="profile-avatar">
     <h1>AwaKristal</h1>
-    <p>Bienvenido a mi espacio web personal y repositorio de proyectos</p>
+    <p>Espacio personal y repositorio de proyectos</p>
   </header>
 
-  <div class="container">
+  <!-- INTERFAZ PRINCIPAL -->
+  <div id="view-main" class="container">
+    
+    <!-- Redes Sociales (Boton para cambiar de vista) -->
     <section class="card">
-      <h2>Recursos y Proyectos</h2>
+      <h2>Redes</h2>
       <br>
-      <h3>Awasync</h3>
-      <p>Accede a la plataforma y documentación del proyecto Awasync.</p>
+      <p>Accede a mis perfiles y comunidades en distintas plataformas.</p>
+      <button onclick="toggleView('redes')" class="btn">Ver Redes Sociales 🌐</button>
+    </section>
+
+    <!-- Mods -->
+    <section class="card">
+      <h2>Mods (Steam Workshop)</h2>
+      <br>
+      <p>Echa un vistazo a los contenidos y modificaciones publicados en Steam.</p>
+      <a href="https://steamcommunity.com/id/AwaKristal/myworkshopfiles/" target="_blank" class="btn">Visitar Workshop 🛠️</a>
+    </section>
+
+    <!-- Awasync -->
+    <section class="card">
+      <h2>Awasync</h2>
+      <br>
+      <p>Accede a la plataforma web oficial y documentación del proyecto Awasync.</p>
       <a href="https://awakristal.github.io/awasync-web/" target="_blank" class="btn">Visitar Awasync Web 🚀</a>
     </section>
 
+    <!-- Más Proyectos -->
     <section class="card">
-      <h2>Otros Recursos</h2>
-      <p>Próximamente más herramientas, mods y proyectos creados por AwaKristal.</p>
+      <h2>Más Proyectos</h2>
+      <br>
+      <div style="margin-bottom: 15px;">
+        <p><strong>StarEX (.apk)</strong></p>
+        <span class="author-credit">por: Leonelb2840</span>
+        <!-- Botón para descargar el APK subido -->
+        <a href="data:application/vnd.android.package-archive;base64,PK..." download="StarEX.apk" class="btn btn-secondary">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+          </svg>
+          Descargar StarEX (.apk)
+        </a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- INTERFAZ DE REDES SOCIALES -->
+  <div id="view-redes" class="container hidden">
+    <section class="card">
+      <button onclick="toggleView('main')" class="btn btn-secondary" style="margin-top: 0; margin-bottom: 20px;">
+        ← Regresar a la página principal
+      </button>
+
+      <h2>Mis Redes Sociales</h2>
+      
+      <div class="social-grid">
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/@AwaKristal" target="_blank" class="btn btn-secondary btn-social">
+          <svg width="20" height="20" fill="#FF0000" viewBox="0 0 16 16">
+            <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022 1.018a33.58 33.58 0 0 1 0 2.871l-.022 1.018-.01.104c-.048.519-.119 1.023-.22 1.402a2.007 2.007 0 0 1-1.415 1.42c-1.123.302-5.288.332-6.11.335h-.088c-.822-.003-4.987-.033-6.11-.335a2.007 2.007 0 0 1-1.415-1.42c-.101-.38-.172-.883-.22-1.402l-.01-.104-.022-1.018a33.58 33.58 0 0 1 0-2.871l.022-1.018.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c1.123-.302 5.288-.332 6.11-.335zM6.1 5.03v5.939l5.03-2.97L6.1 5.03z"/>
+          </svg>
+          YouTube
+        </a>
+
+        <!-- Twitch -->
+        <a href="https://www.twitch.tv/awakristal" target="_blank" class="btn btn-secondary btn-social">
+          <svg width="20" height="20" fill="#9146FF" viewBox="0 0 16 16">
+            <path d="M3.857 0 1.5 2.357V13.5h3.429V16l2.5-2.5h2.143L14.5 8.5V0H3.857zm9.714 7.857-2.143 2.143H9.286l-2.143 2.143V10H4.714V1.429h8.857v6.428z"/>
+            <path d="M11.5 3.571h-1.429v3.572H11.5V3.571zm-3.571 0H6.5v3.572h1.429V3.571z"/>
+          </svg>
+          Twitch
+        </a>
+
+        <!-- Steam -->
+        <a href="https://steamcommunity.com/id/AwaKristal/" target="_blank" class="btn btn-secondary btn-social">
+          <svg width="20" height="20" fill="#66c0f4" viewBox="0 0 16 16">
+            <path d="M.329 10.333A8.01 8.01 0 0 0 7.99 16C12.414 16 16 12.418 16 8s-3.586-8-8.009-8A8.006 8.006 0 0 0 0 7.468l.003.006 4.304 1.769A2.198 2.198 0 0 1 5.62 8.88l1.96-2.844a2.225 2.225 0 0 1 .15-.008c1.22 0 2.21.99 2.21 2.21 0 .285-.054.557-.153.806l2.843 1.96a2.21 2.21 0 0 1 2.808.528 2.21 2.21 0 0 1-3.13 3.123 2.21 2.21 0 0 1-.527-2.812l-1.96-2.842a2.22 2.22 0 0 1-.806.153c-1.22 0-2.21-.99-2.21-2.21 0-.05.003-.101.008-.15L4.975 6.91a2.196 2.196 0 0 1-.092.831L.329 10.333z"/>
+          </svg>
+          Steam
+        </a>
+
+        <!-- GitHub -->
+        <a href="https://github.com/AwaKristal" target="_blank" class="btn btn-secondary btn-social">
+          <svg width="20" height="20" fill="#ffffff" viewBox="0 0 16 16">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+          GitHub
+        </a>
+
+        <!-- Reddit -->
+        <a href="https://www.reddit.com/user/AwaKristal/" target="_blank" class="btn btn-secondary btn-social">
+          <svg width="20" height="20" fill="#FF4500" viewBox="0 0 16 16">
+            <path d="M6.167 8a.833.833 0 1 0 0 1.666.833.833 0 0 0 0-1.666zm3.666 0a.833.833 0 1 0 0 1.666.833.833 0 0 0 0-1.666z"/>
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.828-1.165c-.315 0-.602.124-.812.325-.801-.573-1.9-.945-3.121-.993l.534-2.515 1.738.37a.83.83 0 1 0 .83-.829.833.833 0 0 0-.783.551l-1.954-.416a.208.208 0 0 0-.244.159l-.6 2.824c-1.246.037-2.368.411-3.178.99a1.202 1.202 0 0 0-.813-.328 1.206 1.206 0 0 0-.853 2.063c-.021.127-.033.256-.033.387 0 1.98 2.301 3.585 5.14 3.585 2.838 0 5.139-1.605 5.139-3.585 0-.13-.012-.258-.032-.384a1.208 1.208 0 0 0 .852-2.064zM10.8 11.28c-.53.53-1.542.57-2.8.57-1.26 0-2.27-.04-2.8-.57a.208.208 0 0 1 .295-.294c.393.393 1.223.456 2.505.456 1.28 0 2.11-.063 2.505-.456a.208.208 0 0 1 .295.294z"/>
+          </svg>
+          Reddit
+        </a>
+
+        <!-- Spotify -->
+        <a href="https://open.spotify.com/user/31k55q3br423cyenzlyy4nttpp3y" target="_blank" class="btn btn-secondary btn-social">
+          <svg width="20" height="20" fill="#1DB954" viewBox="0 0 16 16">
+            <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.669 11.538a.498.498 0 0 1-.686.165c-1.879-1.147-4.243-1.407-7.028-.77a.499.499 0 0 1-.222-.973c3.048-.696 5.662-.397 7.77.892a.5.5 0 0 1 .166.686zm.979-2.178a.624.624 0 0 1-.858.205c-2.15-1.321-5.428-1.704-7.972-.932a.625.625 0 0 1-.362-1.194c2.905-.881 6.517-.454 8.986 1.063a.624.624 0 0 1 .206.858zm.084-2.268C10.154 5.56 5.9 5.419 3.438 6.166a.748.748 0 1 1-.434-1.432c2.825-.857 7.523-.692 10.492 1.07a.747.747 0 1 1-.764 1.288z"/>
+          </svg>
+          Spotify
+        </a>
+
+        <!-- Epic Games -->
+        <div class="btn btn-secondary btn-social" style="cursor: default;">
+          <svg width="20" height="20" fill="#ffffff" viewBox="0 0 24 24">
+            <path d="M12 0L1.75 3.5v13.5L12 24l10.25-7V3.5L12 0zm0 3.1l7.5 2.5v10.2L12 20.6l-7.5-4.8V5.6L12 3.1z"/>
+          </svg>
+          Epic Games: AwaKristal
+        </div>
+      </div>
     </section>
   </div>
 
   <footer>
     <p>&copy; 2026 AwaKristal. Todos los derechos reservados.</p>
   </footer>
+
+  <script>
+    function toggleView(view) {
+      const mainView = document.getElementById('view-main');
+      const redesView = document.getElementById('view-redes');
+
+      if (view === 'redes') {
+        mainView.classList.add('hidden');
+        redesView.classList.remove('hidden');
+      } else {
+        redesView.classList.add('hidden');
+        mainView.classList.remove('hidden');
+      }
+      window.scrollTo(0, 0);
+    }
+  </script>
 
 </body>
 </html>
