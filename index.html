@@ -42,10 +42,11 @@
     }
 
     .profile-avatar {
-      width: 140px;
-      height: 140px;
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
       object-fit: cover;
+      object-position: center top;
       border: 3px solid var(--accent-color);
       box-shadow: 0 4px 12px rgba(88, 166, 255, 0.2);
       margin-bottom: 15px;
@@ -147,17 +148,6 @@
     .fa-spotify { color: #1DB954; }
     .fa-gamepad { color: #f2f2f2; }
 
-    .author-credit {
-      font-size: 0.8rem;
-      color: var(--subtext-color);
-      margin-top: 4px;
-      display: block;
-    }
-
-    #view-main, #view-redes {
-      transition: opacity 0.3s ease;
-    }
-
     .hidden {
       display: none !important;
     }
@@ -177,7 +167,7 @@
 <body>
 
   <header>
-    <img src="https://i.postimg.cc/xd94L0Z0/Perico.jpg" alt="AwaKristal Avatar" class="profile-avatar">
+    <img src="https://i.postimg.cc/vZHv884c/Barbinaranjas-Posando.jpg" alt="AwaKristal Avatar" class="profile-avatar">
     <h1>AwaKristal</h1>
     <p>Espacio personal y repositorio de proyectos</p>
   </header>
@@ -205,37 +195,14 @@
       </a>
     </section>
 
-    <!-- AWASYNC -->
-    <section class="card">
-      <h2>Awasync</h2>
-      <br>
-      <p>Accede a la plataforma web oficial y documentación del proyecto Awasync.</p>
-      <a href="https://awakristal.github.io/awasync-web/" target="_blank" class="btn">
-        <i class="fa-solid fa-rocket"></i> Visitar Awasync Web
-      </a>
-    </section>
-
-    <!-- AWATOOLS (BOT) -->
-    <section class="card">
-      <h2>AwaTools Bot</h2>
-      <br>
-      <p>Explora y accede al bot oficial AwaTools.</p>
-      <a href="https://awakristal.github.io/awatools-web/" target="_blank" class="btn">
-        <i class="fa-solid fa-robot"></i> Abrir AwaTools
-      </a>
-    </section>
-
     <!-- MÁS PROYECTOS -->
     <section class="card">
       <h2>Más Proyectos</h2>
       <br>
-      <div style="margin-bottom: 15px;">
-        <p><strong>StarEX (.apk)</strong></p>
-        <span class="author-credit">por: Leonelb2840</span>
-        <a href="StarEX.apk" download="StarEX.apk" class="btn btn-secondary">
-          <i class="fa-solid fa-download"></i> Descargar StarEX (.apk)
-        </a>
-      </div>
+      <p>Explora otros proyectos, herramientas y descargas disponibles.</p>
+      <button onclick="toggleView('proyectos')" class="btn">
+        <i class="fa-solid fa-folder-open"></i> Ver Más Proyectos
+      </button>
     </section>
 
   </div>
@@ -288,6 +255,19 @@
     </section>
   </div>
 
+  <!-- INTERFAZ DE MÁS PROYECTOS -->
+  <div id="view-proyectos" class="container hidden">
+    <section class="card">
+      <button onclick="toggleView('main')" class="btn btn-secondary" style="margin-top: 0; margin-bottom: 20px;">
+        <i class="fa-solid fa-arrow-left"></i> Regresar a la página principal
+      </button>
+
+      <h2>Más Proyectos</h2>
+      <br>
+      <p style="color: var(--subtext-color);">Próximamente se añadirán más contenidos y proyectos aquí.</p>
+    </section>
+  </div>
+
   <footer>
     <p>&copy; 2026 AwaKristal. Todos los derechos reservados.</p>
   </footer>
@@ -296,14 +276,22 @@
     function toggleView(view) {
       const mainView = document.getElementById('view-main');
       const redesView = document.getElementById('view-redes');
+      const proyectosView = document.getElementById('view-proyectos');
 
+      // Ocultar todas las vistas
+      mainView.classList.add('hidden');
+      redesView.classList.add('hidden');
+      proyectosView.classList.add('hidden');
+
+      // Mostrar la vista seleccionada
       if (view === 'redes') {
-        mainView.classList.add('hidden');
         redesView.classList.remove('hidden');
+      } else if (view === 'proyectos') {
+        proyectosView.classList.remove('hidden');
       } else {
-        redesView.classList.add('hidden');
         mainView.classList.remove('hidden');
       }
+      
       window.scrollTo(0, 0);
     }
   </script>
