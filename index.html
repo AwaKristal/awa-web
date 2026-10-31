@@ -134,6 +134,49 @@
       margin-top: 15px;
     }
 
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .project-card {
+      background-color: #0d1117;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-card h3 {
+      color: var(--text-heading);
+      margin-bottom: 8px;
+      font-size: 1.2rem;
+    }
+
+    .project-card p {
+      color: var(--subtext-color);
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+      flex-grow: 1;
+    }
+
+    .credit-tag {
+      display: inline-block;
+      background-color: #21262d;
+      color: var(--accent-color);
+      font-size: 0.8rem;
+      padding: 2px 8px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      margin-top: 4px;
+      margin-bottom: 12px;
+      width: fit-content;
+    }
+
     .icon-social {
       font-size: 1.3rem;
       width: 25px;
@@ -264,7 +307,54 @@
 
       <h2>Más Proyectos</h2>
       <br>
-      <p style="color: var(--subtext-color);">Próximamente se añadirán más contenidos y proyectos aquí.</p>
+      <p style="color: var(--subtext-color);">Explora las distintas aplicaciones web y archivos disponibles:</p>
+
+      <div class="projects-grid">
+        <!-- All Space Catalog -->
+        <div class="project-card">
+          <div>
+            <h3>All Space Catalog</h3>
+            <p>Catálogo de contenido sobre temas espaciales y astronómicos.</p>
+          </div>
+          <a href="https://awakristal.github.io/all-space-catalog/" target="_blank" class="btn">
+            <i class="fa-solid fa-up-right-from-square"></i> Abrir Proyecto
+          </a>
+        </div>
+
+        <!-- Clicks Per Second -->
+        <div class="project-card">
+          <div>
+            <h3>Clicks Per Second</h3>
+            <p>Herramienta para medir y probar tu velocidad de clics por segundo.</p>
+          </div>
+          <a href="https://awakristal.github.io/clicks-per-second/" target="_blank" class="btn">
+            <i class="fa-solid fa-up-right-from-square"></i> Abrir Proyecto
+          </a>
+        </div>
+
+        <!-- Poderosos Los Pericos -->
+        <div class="project-card">
+          <div>
+            <h3>Poderosos Los Pericos</h3>
+            <p>Plan de Negocios hecho por diversion que no voy a usar pero que puedes explorar y ver si quieres (y tambien usarlo para tu propio negocio si queres)</p>
+          </div>
+          <a href="https://awakristal.github.io/poderosos-los-pericos/" target="_blank" class="btn">
+            <i class="fa-solid fa-up-right-from-square"></i> Abrir Proyecto
+          </a>
+        </div>
+
+        <!-- StarEX.apk -->
+        <div class="project-card">
+          <div>
+            <h3>StarEX.apk</h3>
+            <span class="credit-tag"><i class="fa-solid fa-code"></i> Creado por Leonelb2840</span>
+            <p>Aplicación Android desarrollada por mi amigo Leonelb2840.</p>
+          </div>
+          <a href="StarEX.apk" download class="btn btn-secondary">
+            <i class="fa-solid fa-download"></i> Descargar APK
+          </a>
+        </div>
+      </div>
     </section>
   </div>
 
